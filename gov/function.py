@@ -44,19 +44,19 @@ def fun4(datas):
     b = 0
     c = 0
     for ser in datas:
-        if ser[20] == 1:
+        if ser[21] == 1:
             if ser[9] in result['处置中']:
                 result['处置中'][ser[9]] += 1
             else:
                 result['处置中'][ser[9]] = 1
             a=a+1
-        elif ser[19] == 1:
+        elif ser[20] == 1:
             if ser[9] in result['超期结办']:
                 result['超期结办'][ser[9]] += 1
             else:
                 result['超期结办'][ser[9]] = 1
             b=b+1
-        elif ser[21] == 1:
+        elif ser[22] == 1:
             if ser[9] in result['按期结办']:
                 result['按期结办'][ser[9]] += 1
             else:
