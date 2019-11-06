@@ -226,7 +226,25 @@ def search(time1,time2):
     # 使用cursor()方法获取操作游标
     cursor = db.cursor()
     sql = "SELECT * FROM event \
-               WHERE rec_id < 100000 and CREATE_TIME BETWEEN str_to_date(\'%s\','%%Y-%%m-%%d %%H:%%i:%%s') AND str_to_date(\'%s\','%%Y-%%m-%%d %%H:%%i:%%s')" % (time1, time2)
+               WHERE  CREATE_TIME BETWEEN str_to_date(\'%s\','%%Y-%%m-%%d %%H:%%i:%%s') AND str_to_date(\'%s\','%%Y-%%m-%%d %%H:%%i:%%s')" % (time1, time2)
+
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+    except:
+        print("Error: unable to fetch data")
+
+    # 关闭数据库连接
+    db.close()
+    return results
+def error():
+    import pymysql
+    db = pymysql.connect("localhost", "root", "root", "GOVDATA", charset='utf8')
+    cursor = db.cursor()
+    sql = "SELECT * FROM event \
+                   WHERE rec_id < 100000 and CREATE_TIME BETWEEN str_to_date(\'%s\','%%Y-%%m-%%d %%H:%%i:%%s') AND str_to_date(\'%s\','%%Y-%%m-%%d %%H:%%i:%%s')" % (0,0)
 
     try:
         # 执行SQL语句
